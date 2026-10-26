@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./Images/Olist.jpg" alt="Predicting Delivery Delay Risks for Olist Brazilian E-Commerce" width="100%">
+  <img src="./Images/Olist.png" alt="Predicting Delivery Delay Risks for Olist Brazilian E-Commerce" width="100%">
 </p>
 
 <h1 align="center">🚚 Predicting Delivery Delay Risks: Olist Brazilian E-Commerce Analytics & Late Delivery Prediction</h1>
