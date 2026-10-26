@@ -20,7 +20,7 @@ Proyek end-to-end di atas dataset <strong>Olist Brazilian E-Commerce</strong> ya
 **Tools Used:** Power BI, DAX, Python (pandas, numpy, scikit-learn, LightGBM, joblib), FastAPI  
 **Dataset:** Olist Brazilian E-Commerce Public Dataset (Customers, Orders, Order Items, Sellers, Products, Geolocation, Reviews, Payments)
 
-![Olist Dashboard Preview](images/Halaman_1.png)
+![Olist Dashboard Preview](Images/Halaman_1.png)
 
 ---
 
@@ -46,6 +46,7 @@ Proyek end-to-end di atas dataset <strong>Olist Brazilian E-Commerce</strong> ya
 
 ## 🚀 Akses & Download
 
+- 🌐 **Live Interactive Dashboard:** Jika Anda ingin mencoba fitur filter interaktif (*cross-highlighting*) pada dashboard ini secara langsung, silakan kunjungi tautan berikut: **[Buka Dashboard Interaktif di Power BI](https://app.powerbi.com/view?r=eyJrIjoiZGIyZDAyMGEtYzhiMS00ZjNmLTg2MDEtYTc4MzdmZjMyNTJlIiwidCI6ImY4NjQ5NTQ2LTdjMTctNGNhMS1iMzcyLTI4Njg4NGRlZjRhOCJ9&pageName=60fc92f7fe220b7093ed)**
 - 📥 **Download Project File:** File Power BI (`.pbix`) tersedia di folder `model/` pada repositori ini untuk mempelajari struktur data, DAX, dan skrip Python yang tertanam.
 - 📓 **Notebook Python:** Seluruh proses merge data, cleaning, feature engineering, pemodelan, dan ekspor model ada di `Olist_Brazillian_E-Commerce.ipynb`.
 - ⚡ **REST API:** Layanan prediksi real-time ada di `main.py` (FastAPI). Lihat [Cara Menjalankan Proyek](#-cara-menjalankan-proyek).
