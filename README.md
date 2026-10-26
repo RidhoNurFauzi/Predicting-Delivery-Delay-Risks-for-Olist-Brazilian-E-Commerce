@@ -47,8 +47,8 @@ Proyek end-to-end di atas dataset <strong>Olist Brazilian E-Commerce</strong> ya
 ## 🚀 Akses & Download
 
 - 🌐 **Live Interactive Dashboard:** Jika Anda ingin mencoba fitur filter interaktif (*cross-highlighting*) pada dashboard ini secara langsung, silakan kunjungi tautan berikut: **[Buka Dashboard Interaktif di Power BI](https://app.powerbi.com/view?r=eyJrIjoiZGIyZDAyMGEtYzhiMS00ZjNmLTg2MDEtYTc4MzdmZjMyNTJlIiwidCI6ImY4NjQ5NTQ2LTdjMTctNGNhMS1iMzcyLTI4Njg4NGRlZjRhOCJ9&pageName=60fc92f7fe220b7093ed)**
-- 📥 **Download Project File:** File Power BI (`.pbix`) tersedia di folder `model/` pada repositori ini untuk mempelajari struktur data, DAX, dan skrip Python yang tertanam.
-- 📓 **Notebook Python:** Seluruh proses merge data, cleaning, feature engineering, pemodelan, dan ekspor model ada di `Olist_Brazillian_E-Commerce.ipynb`.
+- 📥 **Download Project File:** File Power BI (`.pbix`) tersedia di folder `Model/` pada repositori ini untuk mempelajari struktur data, DAX, dan skrip Python yang tertanam.
+- 📓 **Notebook Python:** Seluruh proses merge data, cleaning, feature engineering, pemodelan, dan ekspor model ada di `Notebook/Olist_Brazillian_E-Commerce.ipynb`.
 - ⚡ **REST API:** Layanan prediksi real-time ada di `main.py` (FastAPI). Lihat [Cara Menjalankan Proyek](#-cara-menjalankan-proyek).
 
 ---
@@ -175,16 +175,16 @@ Halaman ini memakai **1.000 sampel data uji** yang sudah diprediksi oleh model.
 
 ### 5. Sebaran Risiko pada Sampel Prediksi
 
-Dari 1.000 pesanan sampel, **113 pesanan (±11%) diklasifikasikan High Risk** dengan eksposur finansial sekitar **18,71 ribu**, dan rata-rata probabilitas terlambat **0,21**.
+Dari 1.000 pesanan sampel, **113 pesanan (11,3%) diklasifikasikan High Risk** dengan eksposur finansial sekitar **18,71 ribu**, dan rata-rata probabilitas terlambat **0,21**.
 
 ### 6. Rute dan Kategori Paling Berisiko
 
-- Pada **Highest-Risk Inter-Provincial Shipping Routes**, rute dengan skor tertinggi adalah pengiriman ke **PI (0,82)**, **TO (0,67)**, dan **RO (0,52)** dari seller di **SP**. Pola ini konsisten dengan tingginya tingkat keterlambatan di wilayah timur laut dan utara pada halaman 1.
+- Pada **Highest-Risk Inter-Provincial Shipping Routes** (hanya rute dengan minimal 5 pesanan pada sampel), rute dengan rata-rata skor risiko tertinggi adalah pengiriman ke **MA (0,43)**, **ES (0,38)**, dan **BA (0,35)** dari seller di **SP**. Mayoritas tujuan berisiko tinggi berada di wilayah timur laut (MA, BA, CE, PE), sejalan dengan tingginya tingkat keterlambatan pada halaman 1, meski ES dan RJ juga muncul sehingga polanya tidak sepenuhnya regional.
 - Pada **Top Product Categories with the Highest Risk of Delay**, kategori **bed_bath_table (21)** memimpin, disusul **watches_gifts, sports_leisure, computers_accessories (masing-masing 16)**, dan **health_beauty (15)**.
 
 ### 7. Tabel Aksi Prioritas
 
-**Tabel Aksi Prioritas** menampilkan kombinasi negara bagian customer, seller, kategori produk, probabilitas terlambat, dan status risiko sehingga tim operasional bisa langsung memilah pesanan mana yang perlu ditindak lebih dulu.
+**Tabel Aksi Prioritas** menampilkan kombinasi negara bagian customer, seller, dan kategori produk beserta rata-rata probabilitas terlambat dan status risikonya, terurut dari probabilitas tertinggi, sehingga tim operasional bisa langsung memilah pesanan mana yang perlu ditindak lebih dulu.
 
 ---
 
@@ -301,19 +301,18 @@ Halaman 2 dashboard memakai **skrip Python di Power Query / visual Python**: fil
 │   └── data_siap_prediksi.csv        # 1.000 sampel data uji untuk Power BI
 ├── Model/
 │   ├── late_delivery_model.pkl       # Model LightGBM + threshold
-│   └── encoding_maps.pkl             # Kamus target encoding (rute, kategori, prior)
+│   ├── encoding_maps.pkl             # Kamus target encoding (rute, kategori, prior)
+│   └── *.pbix                        # File Power BI (dashboard)
 ├── Notebook/
 │   └── Olist_Brazillian_E-Commerce.ipynb
-├── model/                            # File Power BI (.pbix)
-├── images/                           # Preview dashboard
-│   ├── Olist.jpg
+├── Images/                           # Preview dashboard
+│   ├── Olist.png
 │   ├── Halaman_1.png
 │   └── Halaman_2.png
 ├── main.py                           # REST API (FastAPI)
+├── requirements.txt
 └── README.md
 ```
-
-> Sesuaikan struktur di atas dengan susunan folder repositori Anda yang sebenarnya.
 
 ---
 
@@ -321,7 +320,7 @@ Halaman 2 dashboard memakai **skrip Python di Power Query / visual Python**: fil
 
 ### Dashboard Power BI
 
-Buka file `.pbix` di folder `model/` menggunakan Power BI Desktop. Pada halaman 2, pastikan Python sudah terpasang dan ubah path file (`data_siap_prediksi.csv`, `late_delivery_model.pkl`, `encoding_maps.pkl`) pada skrip Python sesuai lokasi di komputer Anda.
+Buka file `.pbix` di folder `Model/` menggunakan Power BI Desktop. Pada halaman 2, pastikan Python sudah terpasang dan ubah path file (`data_siap_prediksi.csv`, `late_delivery_model.pkl`, `encoding_maps.pkl`) pada skrip Python sesuai lokasi di komputer Anda.
 
 ### Notebook & API
 
@@ -344,13 +343,13 @@ Buka file `.pbix` di folder `model/` menggunakan Power BI Desktop. Pada halaman 
    ```
 
 4. **Latih ulang model (opsional)**
-   Jalankan `Olist_Brazillian_E-Commerce.ipynb` secara berurutan (`Kernel → Restart & Run All`). Notebook akan mengekspor `late_delivery_model.pkl`, `encoding_maps.pkl`, dan `data_siap_prediksi.csv`.
+   Jalankan `Notebook/Olist_Brazillian_E-Commerce.ipynb` secara berurutan (`Kernel → Restart & Run All`) dengan folder `Notebook/` sebagai working directory, karena notebook memakai path relatif `../Dataset` dan `../Model`. Notebook akan mengekspor `late_delivery_model.pkl`, `encoding_maps.pkl`, dan `data_siap_prediksi.csv`.
 
 5. **Jalankan API**
    ```bash
    uvicorn main:app --reload
    ```
-   Lalu buka `http://127.0.0.1:8000/docs` untuk mencoba endpoint `/predict`.
+   Jalankan dari root repositori (`main.py` memuat model dari path relatif `Model/`), lalu buka `http://127.0.0.1:8000/docs` untuk mencoba endpoint `/predict`.
 
 **Sumber Dataset:** [Brazilian E-Commerce Public Dataset by Olist (Kaggle)](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
@@ -361,10 +360,9 @@ Buka file `.pbix` di folder `model/` menggunakan Power BI Desktop. Pada halaman 
 1. Daya prediksi masih moderat (PR-AUC 0,225, recall kelas terlambat 34%); fitur yang tersedia sebelum pengiriman terbatas. Menambah data seperti kinerja historis per seller, beban kurir, cuaca, libur nasional, dan kepadatan rute berpotensi meningkatkan performa.
 2. Probabilitas keluaran model belum dikalibrasi karena memakai `scale_pos_weight`, sehingga nilainya (mis. rata-rata 0,21) lebih tepat dibaca sebagai **skor peringkat risiko** daripada peluang sebenarnya; kalibrasi (isotonic atau Platt) menjadi langkah lanjutan.
 3. Threshold dioptimalkan untuk F1; pada praktiknya threshold sebaiknya disesuaikan dengan biaya bisnis (biaya intervensi vs biaya keterlambatan) atau memakai `beta` > 1 untuk mengutamakan recall.
-4. Dashboard halaman 2 hanya memakai 1.000 sampel data uji sebagai demonstrasi; sistem produksi perlu pipeline yang memprediksi pesanan baru secara berkala atau melalui API.
-5. Persentase pada donut *Proportion of Shipment Risk Status* dihitung dari jumlah probabilitas, bukan jumlah pesanan, sehingga angkanya (±28%) berbeda dari proporsi jumlah pesanan High Risk (113 dari 1.000).
-6. Visual peta bawaan Power BI yang dipakai sudah akan dihentikan Microsoft; perlu dimigrasikan ke Azure Maps atau *Filled Map*.
-7. Pembaruan model memerlukan pelatihan ulang manual; versi model dan monitoring *data drift* belum diterapkan.
+4. Dashboard halaman 2 hanya memakai 1.000 sampel data uji sebagai demonstrasi; sistem produksi perlu pipeline yang memprediksi pesanan baru secara berkala atau melalui API. Karena sampelnya kecil, grafik rute hanya menampilkan rute dengan minimal 5 pesanan agar rata-rata tidak ditentukan oleh satu-dua pesanan.
+5. Visual peta pada halaman 2 masih memakai peta bawaan Power BI yang akan dihentikan Microsoft, dan kode negara bagian Brasil (mis. AL, RJ) terbaca sebagai wilayah negara lain sehingga sorotan peta tidak akurat. Analisis wilayah sebaiknya dibaca dari grafik rute dan tabel aksi prioritas.
+6. Pembaruan model memerlukan pelatihan ulang manual; versi model dan monitoring *data drift* belum diterapkan.
 
 ---
 
