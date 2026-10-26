@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./images/Olist.jpg" alt="Predicting Delivery Delay Risks for Olist Brazilian E-Commerce" width="100%">
+  <img src="./Images/Olist.jpg" alt="Predicting Delivery Delay Risks for Olist Brazilian E-Commerce" width="100%">
 </p>
 
 <h1 align="center">🚚 Predicting Delivery Delay Risks: Olist Brazilian E-Commerce Analytics & Late Delivery Prediction</h1>
@@ -148,7 +148,7 @@ Berdasarkan dashboard halaman *Executive Summary & Business Health*:
 
 ### Halaman 1: Executive Summary & Business Health
 
-![Dashboard Halaman 1](images/Halaman_1.png)
+![Dashboard Halaman 1](Images/Halaman_1.png)
 
 ### 1. Pertumbuhan Bisnis yang Konsisten
 
@@ -168,7 +168,7 @@ Pada **Average of Review Score**, pesanan yang tiba tepat waktu mendapat skor **
 
 ### Halaman 2: Predictive Logistics & Risk Operations
 
-![Dashboard Halaman 2](images/Halaman_2.png)
+![Dashboard Halaman 2](Images/Halaman_2.png)
 
 Halaman ini memakai **1.000 sampel data uji** yang sudah diprediksi oleh model.
 
@@ -326,8 +326,8 @@ Buka file `.pbix` di folder `model/` menggunakan Power BI Desktop. Pada halaman 
 
 1. **Clone repository ini**
    ```bash
-   git clone https://github.com/RidhoNurFauzi/<nama-repository>.git
-   cd <nama-repository>
+   git clone https://github.com/RidhoNurFauzi/Predicting-Delivery-Delay-Risks-for-Olist-Brazilian-E-Commerce.git
+   cd Predicting-Delivery-Delay-Risks-for-Olist-Brazilian-E-Commerce
    ```
 
 2. **Buat virtual environment (opsional tapi disarankan)**
